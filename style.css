@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+}
+
+.bg-custom {
+    background-color: #333366;
+}   
+
+
+.header-space {
+    height: 100px;
+}
+
+@media (max-width: 1000px) {
+    .header-space {
+        height: 150px;
+    }
+}
+
+.__DIVcustom {
+    box-shadow: 2px 2px 18px -8px rgba(0,0,0,0.53);
+}
+
+.hidden {
+    display: none;
+}
+
+.active-btn {
+    background-color: darkblue !important;
+}
