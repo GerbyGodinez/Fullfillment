@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Fullfillment - Staff Panel</title>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .bg-custom {
+            background-color: #333366;
+        }
+
+        .header-space {
+            height: 100px;
+        }
+
+        @media (max-width: 1000px) {
+            .header-space {
+                height: 150px;
+            }
+        }
+
+        .__DIVcustom {
+            box-shadow: 2px 2px 18px -8px rgba(0,0,0,0.53);
+        }
+
+        .__btn-hover:hover {
+            background-color: darkblue;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .active-btn {
+            background-color: #555588 !important;
+        }
+    </style>
+
+    <script>
+        function toggleFormVisibility() {
+            var formContainer = document.getElementById('formContainer');
+            formContainer.classList.toggle('hidden');
+        }
+
+        function switchTable(tableType) {
+            var accountRecordsTable = document.getElementById('accountRecordsTable');
+            var raffleEntryTable = document.getElementById('raffleEntryTable');
+            var productOrderTable = document.getElementById('productOrderTable');
+            
+            var accountRecordsForm = document.getElementById('accountRecordsForm');
+            var raffleEntryForm = document.getElementById('raffleEntryForm');
+            var productOrderForm = document.getElementById('productOrderForm');
+            
+            var accountRecordsBtn = document.getElementById('accountRecordsBtn');
+            var raffleEntryBtn = document.getElementById('raffleEntryBtn');
+            var productOrderBtn = document.getElementById('productOrderBtn');
+
+            accountRecordsTable.classList.add('hidden');
+            raffleEntryTable.classList.add('hidden');
+            productOrderTable.classList.add('hidden');
+            
+            accountRecordsForm.classList.add('hidden');
+            raffleEntryForm.classList.add('hidden');
+            productOrderForm.classList.add('hidden');
+            
+            accountRecordsBtn.classList.remove('active-btn');
+            raffleEntryBtn.classList.remove('active-btn');
+            productOrderBtn.classList.remove('active-btn');
+
+            if (tableType === 'account') {
+                accountRecordsTable.classList.remove('hidden');
+                accountRecordsBtn.classList.add('active-btn');
+                accountRecordsForm.classList.remove('hidden');
+            } else if (tableType === 'raffle') {
+                raffleEntryTable.classList.remove('hidden');
+                raffleEntryBtn.classList.add('active-btn');
+                raffleEntryForm.classList.remove('hidden');
+            } else if (tableType === 'product') {
+                productOrderTable.classList.remove('hidden');
+                productOrderBtn.classList.add('active-btn');
+                productOrderForm.classList.remove('hidden');
+            }
+        }
+    </script>
+</head>
+<body onload="switchTable('account')">
+    <div class="container-fluid fixed-top p-2 bg-custom">
+        <h1 class="text-white text-center">Fullfillment Resolution Team</h1>
+    </div>
+
+    <!-- Spacer to prevent content from being hidden behind the fixed header -->
+    <div class="header-space"></div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10">
+                <div class="card m-3">
+                    <div class="card-header bg-custom text-white">
+                        <h5>Staff Panel</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Customer information -->
+                        <div class="__DIVcustom m-3">
+                            <div class="p-3">
+                                <div class="row mb-3">
+                                    <div class="col-12 col-md-9 mb-2 mb-md-0">
+                                        <div class="btn-group w-100">
+                                            <button type="button" id="accountRecordsBtn" class="__btn-hover btn bg-custom text-white w-100" onclick="switchTable('account')">Account Records</button>
+                                            <button type="button" id="raffleEntryBtn" class="__btn-hover btn bg-custom text-white w-100" onclick="switchTable('raffle')">Raffle Entry Records</button>
+                                            <button type="button" id="productOrderBtn" class="__btn-hover btn bg-custom text-white w-100" onclick="switchTable('product')">Product Order Records</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-3">
+                                        <button type="button" class="__btn-hover btn bg-custom text-white w-100" onclick="toggleFormVisibility()">Insert Records</button>
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <!-- Insert Form -->
+                                <div id="formContainer" class="__DIVcustom m-3 p-3 hidden">
+                                    <!-- Account Records Form -->
+                                    <div id="accountRecordsForm" class="hidden">
+                                        <div class="row">
+                                            <div class="col-md-4 mb-3">
+                                                <label for="customerID" class="form-label">Customer ID</label>
+                                                <input type="text" class="form-control" id="customerID">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="firstname" class="form-label">Firstname</label>
+                                                <input type="text" class="form-control" id="firstname">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="lastname" class="form-label">Lastname</label>
+                                                <input type="text" class="form-control" id="lastname">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="email" class="form-label">Email</label>
+                                                <input type="email" class="form-control" id="email">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="phone" class="form-label">Phone number</label>
+                                                <input type="text" class="form-control" id="phone">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="address" class="form-label">Address</label>
+                                                <input type="text" class="form-control" id="address">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="card" class="form-label">Card number</label>
+                                                <input type="text" class="form-control" id="card">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Raffle Entry Records Form -->
+                                    <div id="raffleEntryForm" class="hidden">
+                                        <div class="row">
+                                            <div class="col-md-4 mb-3">
+                                                <label for="raffleCustomerID" class="form-label">Customer ID</label>
+                                                <input type="text" class="form-control" id="raffleCustomerID">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="orderID" class="form-label">Order ID</label>
+                                                <input type="text" class="form-control" id="orderID">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="orderDate" class="form-label">Date of Order</label>
+                                                <input type="date" class="form-control" id="orderDate">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="charges" class="form-label">Charges</label>
+                                                <input type="text" class="form-control" id="charges">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="raffleRefundFee" class="form-label">Refund Fee</label>
+                                                <input type="text" class="form-control" id="raffleRefundFee">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Product Order Records Form -->
+                                    <div id="productOrderForm" class="hidden">
+                                        <div class="row">
+                                            <div class="col-md-4 mb-3">
+                                                <label for="productCustomerID" class="form-label">Customer ID</label>
+                                                <input type="text" class="form-control" id="productCustomerID">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="productOrderID" class="form-label">Order ID</label>
+                                                <input type="text" class="form-control" id="productOrderID">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="productCharges" class="form-label">Charges</label>
+                                                <input type="text" class="form-control" id="productCharges">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="status" class="form-label">Status</label>
+                                                <input type="text" class="form-control" id="status">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="productOrderDate" class="form-label">Date of Order</label>
+                                                <input type="date" class="form-control" id="productOrderDate">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="productRefundFee" class="form-label">Refund Fee</label>
+                                                <input type="text" class="form-control" id="productRefundFee">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-end">
+                                        <button type="button" class="btn btn-secondary me-2" onclick="toggleFormVisibility()">Cancel</button>
+                                        <button type="button" class="btn btn-primary">Add</button>
+                                    </div>
+                                </div>
+
+                                <!-- Tables -->
+                                <div class="table-responsive">
+                                    <!-- Account Records Table -->
+                                    <table id="accountRecordsTable" class="table table-striped mt-3">
+                                        <thead>
+                                            <tr>
+                                                <th>Customer ID</th>
+                                                <th>Firstname</th>
+                                                <th>Lastname</th>
+                                                <th>Email</th>
+                                                <th>Phone number</th>
+                                                <th>Address</th>
+                                                <th>Card number</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>55555</td>
+                                                <td>John</td>
+                                                <td>Doe</td>
+                                                <td>john@example.com</td>
+                                                <td>0912345</td>
+                                                <td>Sample Address</td>
+                                                <td>XXXXXXXX444</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-warning btn-sm">Edit</button>
+                                                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <!-- Raffle Entry Records Table -->
+                                    <table id="raffleEntryTable" class="table table-striped mt-3 hidden">
+                                        <thead>
+                                            <tr>
+                                                <th>Customer ID</th>
+                                                <th>Order ID</th>
+                                                <th>Date of Order</th>
+                                                <th>Charges</th>
+                                                <th>Refund Fee</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>001</td>
+                                                <td>1001</td>
+                                                <td>2024-01-01</td>
+                                                <td>$50</td>
+                                                <td>$5</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-warning btn-sm">Edit</button>
+                                                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <!-- Product Order Records Table -->
+                                    <table id="productOrderTable" class="table table-striped mt-3 hidden">
+                                        <thead>
+                                            <tr>
+                                                <th>Customer ID</th>
+                                                <th>Order ID</th>
+                                                <th>Charges</th>
+                                                <th>Status</th>
+                                                <th>Date of Order</th>
+                                                <th>Refund Fee</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>001</td>
+                                                <td>1001</td>
+                                                <td>$50</td>
+                                                <td>Shipped</td>
+                                                <td>2024-01-01</td>
+                                                <td>$5</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-warning btn-sm">Edit</button>
+                                                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
